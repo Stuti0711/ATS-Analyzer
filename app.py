@@ -120,7 +120,7 @@ st.markdown("""
 
 # Load environment variables
 load_dotenv()
-
+GOOGLE_API_KEY = 'AIzaSyD4EdGIVgtC-hSNHPk7yzUJH45KnEqsC6w'
 # Configure Gemini API
 try:
     genai.configure(api_key=st.secrets['GOOGLE_API_KEY'])
