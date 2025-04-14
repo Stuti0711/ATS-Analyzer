@@ -1,50 +1,47 @@
-# ATS-Analyzer 🧠📄
+# ATS-Analyzer 📄
 
-An AI-powered resume analyzer built with **Streamlit**, designed to help job seekers tailor their resumes to specific job descriptions. It uses **LLMs like Google Gemini** to evaluate resume relevance and improve chances of passing Applicant Tracking Systems (ATS).
+A powerful AI-powered **Applicant Tracking System (ATS) Resume Analyzer** built with Streamlit. This tool evaluates how well your resume matches a given job description using advanced LLMs (like Google Gemini), helping you optimize your resume to pass through ATS filters used by companies in their hiring process.
 
 🔗 **Live Demo:** [atsanalyzer.streamlit.app](https://atsanalyzer.streamlit.app/)
 
 ---
 
+## 📌 Overview
+
+Recruiters often use ATS software to filter resumes based on job relevance, meaning poorly optimized resumes may get rejected before human review.  
+**ATS-Analyzer** helps you:
+
+- Improve resume alignment with job descriptions.
+- Understand key missing skills and experiences.
+- Get actionable suggestions to tailor your resume.
+
+Whether you're a job seeker, a student, or a professional — this tool gives you a competitive edge in the job market.
+
+---
+
 ## 🚀 Features
 
-- 📄 Upload resume (PDF)
-- 🧾 Paste a job description
-- 🤖 AI analyzes skills, keywords, and relevance
-- 📊 Compatibility score between resume & job post
-- 💡 Improvement suggestions
+- 📤 Upload your **resume (PDF)**
+- 📋 Paste or input the **job description**
+- 🤖 Uses **AI (LLM like Google Gemini)** to:
+  - Extract relevant skills
+  - Match keywords
+  - Evaluate experience relevance
+- 📊 **Score your resume** against the job post
+- 💡 Receive **personalized improvement tips**
+- 🧾 Download or copy optimized suggestions
 
 ---
 
-## 🧠 Tech Stack (Detailed)
+## 📂 How It Works
 
-### 🖥️ Frontend – **Streamlit**
-- Provides an interactive UI for users to upload resumes and paste job descriptions.
-- Clean, fast, and mobile-responsive experience using minimal code.
-- Displays results like resume score, keyword matches, and AI suggestions.
+1. **PDF Parsing**  
+   Extracts text content from the uploaded resume using `pdfplumber`.
 
-### 🧠 AI/LLM – **Google Gemini API (or similar)**
-- Powers the core intelligence of the app.
-- Compares resume content with the job description.
-- Returns:
-  - Skill match analysis
-  - Keyword gaps
-  - Personalized suggestions to enhance alignment.
+2. **LLM-Based Matching**  
+   Sends the resume and job description to a language model API (e.g., Google Gemini) to:
+   - Score alignment (e.g., skills, experience, education)
+   - Identify missing keywords or required fields
 
-### 🐍 Backend – **Python**
-- Handles the logic for parsing, preparing prompts, calling the LLM, and processing responses.
-- Manages file uploads and data formatting before AI analysis.
-
-### 📄 PDF Parsing – **pdfplumber**
-- Extracts readable text content from uploaded resume PDFs.
-- Ensures only useful sections are passed to the AI for analysis.
-
-### ☁️ Deployment – **Streamlit Cloud**
-- Free cloud hosting of the app with one-click deployment.
-- Automatically updates the app on every GitHub push.
-- Securely manages `.env` API keys through Streamlit secrets.
-
----
-
-Let me know if you want this formatted as a full GitHub `README.md` file or need badges, screenshots, or install instructions added!
-
+3. **Scoring & Suggestions**  
+   Outputs a percentage-based compatibility score and improvement suggestions.
