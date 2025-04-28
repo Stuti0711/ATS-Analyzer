@@ -120,7 +120,7 @@ st.markdown("""
 
 # Load environment variables
 load_dotenv()
-GOOGLE_API_KEY = 'AIzaSyD4EdGIVgtC-hSNHPk7yzUJH45KnEqsC6w'
+
 # Configure Gemini API
 try:
     genai.configure(api_key=st.secrets['GOOGLE_API_KEY'])
@@ -152,6 +152,7 @@ def input_pdf_text(uploaded_file):
 def display_match_score(score_text):
     """Display the match score with appropriate color coding"""
     try:
+        score_text = score_text.replace('*', '').strip()
         score = int(score_text.strip('%'))
         if score >= 80:
             color = "success"
@@ -235,8 +236,9 @@ if submit:
             
             Provide analysis in the following structure, with ONLY these exact 9 sections:
             
-            PERCENTAGE MATCH: Provide a single percentage score (e.g., 75%) representing how well the resume matches the job description.
             
+            PERCENTAGE MATCH: Only output a single numeric percentage score (e.g., "75%") on a single line. Do not write any extra sentences. Only the number and % symbol.
+
             MISSING & WEAK KEYWORDS: List specific industry keywords that are missing or underrepresented in the resume.
             
             SKILLS ALIGNMENT: Categorize and analyze alignment of Technical Skills, Soft Skills, and Tools & Technologies.
@@ -288,6 +290,13 @@ if submit:
             for section_title, content in matches:
                 clean_title = section_title.strip()
                 clean_content = content.strip()
+                sections_data[clean_title] = clean_content
+            sections_data = {}
+            for section_title, content in matches:
+                clean_title = section_title.strip()
+                clean_content = content.strip()
+                if clean_title.upper() == "PERCENTAGE MATCH":
+                    clean_content = clean_content.replace('*', '').strip()
                 sections_data[clean_title] = clean_content
             
             # Display each section with proper formatting
